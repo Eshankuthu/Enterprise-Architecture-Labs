@@ -5,10 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Movie {
@@ -17,7 +19,9 @@ public class Movie {
 	@GeneratedValue
 	private int id;
 	private String name;
-	private String cover;
+	@Lob
+	@Column(columnDefinition = "mediumblob")
+	private byte[] cover;
 	private int rating;
 	
 	//@Embedded
@@ -61,11 +65,11 @@ public class Movie {
 		this.name = name;
 	}
 
-	public String getCover() {
+	public byte[] getCover() {
 		return cover;
 	}
 
-	public void setCover(String cover) {
+	public void setCover(byte[] cover) {
 		this.cover = cover;
 	}
 

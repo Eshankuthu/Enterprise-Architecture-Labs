@@ -1,5 +1,7 @@
 package edu.mum.hw2.control;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import com.mysql.jdbc.Blob;
 
 import edu.mum.hw2.domain.Actor;
 import edu.mum.hw2.domain.Movie;
@@ -40,11 +44,13 @@ public class Application {
 		try {
 			tx.begin();
 			//code for report creation
+			
 			Movie movie = em.find(Movie.class,1);
 			
 			System.out.println("<-------Movie Report-------->");
 			System.out.println("Movie Name: "+movie.getName());
-			System.out.println("Movie Cover: "+movie.getCover());
+			
+			System.out.println("Movie Cover: "+movie.getCover().toString());
 			System.out.println("Movie Rating: "+movie.getRating());
 			
 			System.out.println("<--------Actors---------->");
@@ -99,7 +105,13 @@ public class Application {
 			movie1.setComment(comment);
 			movie1.setName("Game Of Thrones");
 			movie1.setRating(9);
-			movie1.setCover("GOT Season 7");
+			
+			//Path path = FileSystems.getDefault().getPath("/resources/images", "fightclub.jpg");
+			File file = new File("G:\\MUM DATA\\Courses\\07-EA\\EclipseWorkspace\\exercise02-1\\src\\main\\resources\\images\\fightclub.jpg");
+			//String path = file.getPath();
+			byte[] fileContent = Files.readAllBytes(file.toPath());
+			//byte [] fileData = Files.readAllBytes(path);
+			movie1.setCover(fileContent);
 
 			em.persist(movie1);
 
@@ -113,5 +125,4 @@ public class Application {
 				em.close();
 		}
 	}
-
 }
