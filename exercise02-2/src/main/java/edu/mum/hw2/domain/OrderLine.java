@@ -5,11 +5,11 @@ import javax.persistence.Embedded;
 
 @Embeddable
 public class OrderLine {
-
+	
 	private int quantity;
 	
 	@Embedded
-	private Product product;
+	private Product product = new Product();
 
 	public int getQuantity() {
 		return quantity;
@@ -28,6 +28,5 @@ public class OrderLine {
 	}
 	
 	
-	
-	
+
 }

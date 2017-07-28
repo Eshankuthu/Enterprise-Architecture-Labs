@@ -1,6 +1,6 @@
 package edu.mum.hw2.control;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,73 +13,69 @@ import edu.mum.hw2.domain.Order;
 import edu.mum.hw2.domain.OrderLine;
 import edu.mum.hw2.domain.Product;
 
+
+
 public class Application {
 
 	private static EntityManagerFactory emf;
-	 
-	static { 
-		try { 
+
+	static {
+		try {
 			emf = Persistence.createEntityManagerFactory("cs544");
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 			throw new ExceptionInInitializerError(ex);
-		} 
-	} 
- 
+		}
+	}
+
 	public static void main(String[] args) {
- 
-		addMovies(); 
-		printMoviesReport(); 
+
+		addProduct();
+		printProductReport();
 		emf.close();
-	} 
- 
-	private static void printMoviesReport() { 
-		// TODO Auto-generated method stub 
-	/*	EntityManager em = emf.createEntityManager();
+	}
+
+	private static void printProductReport() {
+		// TODO Auto-generated method stub
+		
+      
+		
+
+	}
+
+	private static void addProduct() {
+		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		try { 
+		try {
 			tx.begin();
-			//code for report creation 
 			
+			
+
+			
+			Product product1 = new Product();
+			product1.setName("Noodles");
+			product1.setDescription("Noodles by Wai Wai");
+			
+			OrderLine orderline1 = new OrderLine();
+			orderline1.setQuantity(10);
+			orderline1.setProduct(product1);
+			
+			List<OrderLine> orderList = new ArrayList();
+			orderList.add(orderline1);
+				
+					
+			Order order1 = new Order();
+			order1.setDate(LocalDate.now());
+			order1.setOrderLine(orderList);
+	       
+			em.persist(order1);
+
 			tx.commit();
 		} catch (Throwable e) {
 			if ((tx != null) && (tx.isActive())) tx.rollback();
-			System.out.println("hello");
-		} finally { 
+		} finally {
 			if ((em != null) && (em.isOpen())) em.close();
-		}*/	 
-	} 
- 
-	private static void addMovies() { 
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx = em.getTransaction();
-		try { 
-			tx.begin();
- 
-			// TODO your code 
-			Product product = new Product();
-			product.setName("mobile");
-			product.setDescription("very good mobile");
-			OrderLine orderline = new OrderLine();
-			orderline.setProduct(product);
-			orderline.setQuantity(4);
- 
-			List<OrderLine> orderlist = new ArrayList<>();
-			Order order = new Order();
-			order.setDate(Date.valueOf("2017-05-09"));
-			order.setOrderLine(orderlist);
-			
-			em.persist(order);
-			em.persist(orderline);
- 
-			tx.commit();
-		} catch (Throwable e) {
-			if ((tx != null) && (tx.isActive()))
-				tx.rollback();
-			System.out.println("hello");
-		} finally { 
-			if ((em != null) && (em.isOpen()))
-				em.close();
-		} 
-	} 
+		}
+	}
+
 }

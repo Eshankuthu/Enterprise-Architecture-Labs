@@ -1,7 +1,7 @@
 package edu.mum.hw2.domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -9,33 +9,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name = "ProductOrder")
+@Entity(name="ProductOrder")
 public class Order {
 	
-	@Id
-	@GeneratedValue
+	@Id @GeneratedValue
 	private int orderid;
 	
-	private Date date;
+	private LocalDate date;
 	
 	@ElementCollection
-	private List<OrderLine> orderLine = new ArrayList<>();
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
+	public List<OrderLine> orderLine = new ArrayList<>();
+	
 	public List<OrderLine> getOrderLine() {
 		return orderLine;
 	}
-
 	public void setOrderLine(List<OrderLine> orderLine) {
 		this.orderLine = orderLine;
 	}
+	public int getOrderid() {
+		return orderid;
+	}
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 	
 	
+
 }
