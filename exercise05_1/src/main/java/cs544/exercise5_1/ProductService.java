@@ -3,6 +3,9 @@ package cs544.exercise5_1;
 import java.util.*;
 
 public class ProductService implements IProductService {
+	
+	private IInventoryService inventoryService;
+
 	private Collection<Product> productList = new ArrayList<Product>();
 
 	public ProductService() {
@@ -18,5 +21,12 @@ public class ProductService implements IProductService {
 		}
 		return null;
 	}
+
+	public int getNumberInStock(int productNumber) {
+		return inventoryService.getNumberInStock(productNumber);
+		}
+		public void setInventoryService(IInventoryService inventoryService) {
+		this.inventoryService = inventoryService;
+		}
 
 }
