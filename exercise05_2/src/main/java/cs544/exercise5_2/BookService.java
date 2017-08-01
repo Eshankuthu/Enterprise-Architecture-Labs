@@ -8,6 +8,7 @@ public class BookService implements IBookService {
 	private Amazon amazon;
 	private BarnesAndNoble barnesandnoble;
 	private EBooks ebooks;
+	private Borders borders;
 	
 
 	public List<IBookSupplier> getSuppliers() {
