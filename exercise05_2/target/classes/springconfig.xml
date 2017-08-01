@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bookservice" class="cs544.exercise5_2.BookService">
+	<property name="suppliers">
+		<list>
+			<bean id="amazon" class="cs544.exercise5_2.Amazon"></bean>
+			<bean id="amazon" class="cs544.exercise5_2.Amazon"></bean>
+			<bean id="amazon" class="cs544.exercise5_2.Amazon"></bean>	
+		</list>
+	</property>
+	</bean>
+	
+    
+
+</beans>
+
+
