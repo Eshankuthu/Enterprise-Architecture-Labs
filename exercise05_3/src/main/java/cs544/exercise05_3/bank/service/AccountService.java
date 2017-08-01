@@ -1,15 +1,15 @@
-package cs544.exercise5_3.bank.service;
+package cs544.exercise05_3.bank.service;
 
 import java.util.Collection;
 
-import cs544.exercise5_3.bank.dao.AccountDAO;
-import cs544.exercise5_3.bank.dao.IAccountDAO;
-import cs544.exercise5_3.bank.domain.Account;
-import cs544.exercise5_3.bank.domain.Customer;
-import cs544.exercise5_3.bank.jms.IJMSSender;
-import cs544.exercise5_3.bank.jms.JMSSender;
-import cs544.exercise5_3.bank.logging.ILogger;
-import cs544.exercise5_3.bank.logging.Logger;
+import cs544.exercise05_3.bank.dao.AccountDAO;
+import cs544.exercise05_3.bank.dao.IAccountDAO;
+import cs544.exercise05_3.bank.domain.Account;
+import cs544.exercise05_3.bank.domain.Customer;
+import cs544.exercise05_3.bank.jms.IJMSSender;
+import cs544.exercise05_3.bank.jms.JMSSender;
+import cs544.exercise05_3.bank.logging.ILogger;
+import cs544.exercise05_3.bank.logging.Logger;
 
 
 
@@ -20,13 +20,21 @@ public class AccountService implements IAccountService {
 	private ICurrencyConverter currencyConverter;
 	private IJMSSender jmsSender;
 	private ILogger logger;
+	
 
-	public AccountService(){
-		accountDAO=new AccountDAO();
-		currencyConverter= new CurrencyConverter();
-		jmsSender =  new JMSSender();
-		logger = new Logger();
+	public AccountService(IAccountDAO accountDAO,ICurrencyConverter currencyConverter,IJMSSender jmsSender,ILogger logger){
+//		accountDAO=new AccountDAO();
+//		currencyConverter= new CurrencyConverter();
+//		jmsSender =  new JMSSender();
+//		logger = new Logger();
+		
+		this.accountDAO=accountDAO;
+		this.currencyConverter=currencyConverter;
+		this.jmsSender=jmsSender;
+		this.logger=logger;
 	}
+
+	
 
 	public Account createAccount(long accountNumber, String customerName) {
 		Account account = new Account(accountNumber);
